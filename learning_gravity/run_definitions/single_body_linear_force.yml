@@ -1,0 +1,27 @@
+data:
+  dataset: "example_0"
+  splits: [0.7, 0.15, 0.15]
+  input_transforms: []
+  output_transforms: ["log_magnitude"]
+training:
+  batch_size: 100
+  shuffle: true
+  epochs: 1_000
+  loss: "l1"
+  optimizer: "Adam"
+  lr: 5e-3
+model:
+  variant: "linear_force"
+  kwargs:
+    system_folder: "example_0"
+    preprocessing: ["flatten_force_args", "log_difference"]
+    postprocessing: []
+plotting:
+  inputs: true
+  predictions: true
+  difference: true
+logging:
+  epoch_spacing: 10
+  history: true
+  model: true
+  metrics: []

@@ -1,0 +1,29 @@
+data:
+  dataset: "example_1"
+  splits: [0.7, 0.15, 0.15]
+  input_transforms: ["normalize"]
+  output_transforms: ["log_magnitude", "normalize"]
+training:
+  batch_size: 100
+  shuffle: true
+  epochs: 1_000
+  loss: "l1"
+  optimizer: "Adam"
+  lr: 1e-2
+model:
+  variant: "nn_force"
+  kwargs:
+    system_folder: "example_1"
+    layer_list: [10, 10, 3]
+    input_dims: 4
+    preprocessing: ["flatten_force_args", "log_difference"]
+    postprocessing: []
+plotting:
+  inputs: true
+  predictions: true
+  difference: true
+logging:
+  epoch_spacing: 10
+  history: true
+  model: true
+  metrics: []

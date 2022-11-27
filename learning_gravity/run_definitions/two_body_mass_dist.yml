@@ -1,0 +1,28 @@
+data:
+  dataset: "example_2"
+  splits: [0.7, 0.15, 0.15]
+  input_transforms: []
+  output_transforms: ["log_magnitude"]
+training:
+  batch_size: 100
+  shuffle: true
+  epochs: 10_000
+  loss: "l1"
+  optimizer: "Adam"
+  lr: 1e-2
+model:
+  variant: "mass_optimizer"
+  kwargs:
+    initial_masses: [3., 1.]
+    initial_positions: [[6., 1.], [0., 0.]]
+    preprocessing: []
+    postprocessing: ["log_magnitude"]
+plotting:
+  inputs: true
+  predictions: true
+  difference: true
+logging:
+  epoch_spacing: 10
+  history: true
+  model: true
+  metrics: ["masses", "positions"]
