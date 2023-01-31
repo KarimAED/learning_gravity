@@ -6,7 +6,7 @@ data:
 training:
   batch_size: 100
   shuffle: true
-  epochs: 10_000
+  epochs: 1_000
   loss: "l1"
   optimizer: "Adam"
   lr: 1e-2

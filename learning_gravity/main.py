@@ -9,6 +9,7 @@ import torch
 import numpy as np
 import matplotlib.pyplot as plt
 import yaml
+import torchviz
 
 from learning_gravity.dataset import PositionDataset
 from learning_gravity.model import Model
@@ -91,7 +92,7 @@ def main():
         raise Exception("Cannot navigate to proper directory.")
     definition_dict = parse_definition()
     time_stamp = int(time.time())
-    out_path = Path("runs") / f"{definition_dict['name']}_{time_stamp}"
+    out_path = Path("runs") / f"{time_stamp}_{definition_dict['name']}"
     assert not out_path.exists()
     os.mkdir(out_path)
     with open(out_path / "definition.json", "w", encoding="utf-8") as definition_log:
@@ -156,6 +157,7 @@ def main():
     if log_definition["history"]:
         log_stream = open(out_path / "history.txt", "w", encoding="utf-8")
 
+    loss = 0
     for epoch in range(training_definition["epochs"]):
         loss = 0
         for batch in train_loader:
@@ -180,6 +182,7 @@ def main():
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+
 
     if log_definition["history"]:
         log_stream.close()
